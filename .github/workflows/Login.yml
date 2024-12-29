@@ -20,7 +20,12 @@ jobs:
       - name: Set up Node.js  
         uses: actions/setup-node@v3  
         with:  
-          node-version: '20.x'  
+          node-version: '20.x'
+
+      - name: Install Puppeteer dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxrandr2 libgbm1 libpango-1.0-0 libasound2
   
       - name: Install dependencies  
         run: npm install puppeteer  
@@ -32,4 +37,3 @@ jobs:
         run: |  
           set -e  
           xvfb-run --server-args="-screen 0 1280x1024x24" node login.js
-
